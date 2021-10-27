@@ -1,11 +1,13 @@
-const img = document.querySelector('img');
+const imperial = 'imperial';
+const test = document.querySelector('.test');
 
-async function getCats() {
+async function getWeather(city) {
   const response = await fetch(
-    'https://api.giphy.com/v1/gifs/translate?api_key=YOUR_KEY_HERE&s=cats',
+    `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${imperial}&APPID=96517cb296bd62cd371f73c7fc1b036e`,
     { mode: 'cors' },
   );
-  const catData = await response.json();
-  img.src = catData.data.images.original.url;
+  const weatherData = await response.json();
+  test.textContent = weatherData.main.temp;
 }
-getCats();
+
+getWeather('san francisco');
