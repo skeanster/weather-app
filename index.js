@@ -3,12 +3,12 @@ const celcius = 'metric';
 let currentUnits = imperial;
 let currentCity = 'san francisco';
 
-const test = document.querySelector('.test');
-
 // eslint-disable-next-line func-names
 const display = (function () {
+  const temp = document.querySelector('.temp');
+
   const displayData = (data) => {
-    test.textContent = Math.round(data.main.temp);
+    temp.textContent = `°${Math.round(data.main.temp)}`;
   };
 
   return { displayData };
