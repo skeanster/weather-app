@@ -31,7 +31,7 @@ const display = (function () {
 const getWeather = async (city, units) => {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&APPID=96517cb296bd62cd371f73c7fc1b036e`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&APPID=96517cb296bd62cd371f73c7fc1b036e`,
       { mode: 'cors' },
     );
     const weatherData = await response.json();
