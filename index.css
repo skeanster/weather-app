@@ -1,3 +1,7 @@
+html {
+  min-height: 500px;
+}
+
 body {
   background-color: #1d1d1d;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%2326b7cc' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23ffffff' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%2300b6c0' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23d3d8e7' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%2300b4b0' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23a7b2cf' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%2300b19d' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%237b8eb7' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%2300ae87' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%234d6c9f' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%230caa6f' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23084c88' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
@@ -7,16 +11,121 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0px;
-  min-height: 100%;
+}
+
+.scrollBar {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 767px) {
+  .humidity {
+    display: none;
+  }
+  .windSpeed {
+    display: none;
+  }
+  .min {
+    display: none;
+  }
+  .max {
+    display: none;
+  }
+}
+
+.container {
+  position: absolute;
+  top: calc(10% + 250px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  background: #1d1d1d;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 40px;
+}
+
+.searchForm {
+  position: relative;
+  height: 35px;
+}
+
+#citySubmit {
+  display: none;
+}
+
+#cityInput {
+  width: 200px;
+  background: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  padding-left: 35px;
+}
+
+.changeUnits {
+  width: 245px;
+  height: 35px;
+  background: white;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.changeUnits:hover {
+  border: 2px solid #1abc9c;
+}
+
+.searchIcon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMzAiIGhlaWdodD0iMzAiCnZpZXdCb3g9IjAgMCAxNzIgMTcyIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxwYXRoIGQ9Ik0wLDE3MnYtMTcyaDE3MnYxNzJ6IiBmaWxsPSJub25lIj48L3BhdGg+PGcgZmlsbD0iIzFhYmM5YyI+PHBhdGggZD0iTTc0LjUzMzMzLDE3LjJjLTMxLjU5NjQyLDAgLTU3LjMzMzMzLDI1LjczNjkyIC01Ny4zMzMzMyw1Ny4zMzMzM2MwLDMxLjU5NjQyIDI1LjczNjkyLDU3LjMzMzMzIDU3LjMzMzMzLDU3LjMzMzMzYzEzLjczOTk4LDAgMjYuMzU4MzQsLTQuODc5MTUgMzYuMjQ3NjYsLTEyLjk3ODM5bDM0LjIzMjAzLDM0LjIzMjAzYzEuNDM4MDIsMS40OTc3OCAzLjU3MzQsMi4xMDExMyA1LjU4MjYsMS41NzczNWMyLjAwOTIsLTAuNTIzNzggMy41NzgyNiwtMi4wOTI4NCA0LjEwMjA0LC00LjEwMjA0YzAuNTIzNzgsLTIuMDA5MiAtMC4wNzk1NywtNC4xNDQ1OCAtMS41NzczNSwtNS41ODI2bC0zNC4yMzIwMywtMzQuMjMyMDNjOC4wOTkyNCwtOS44ODkzMiAxMi45NzgzOSwtMjIuNTA3NjggMTIuOTc4MzksLTM2LjI0NzY2YzAsLTMxLjU5NjQyIC0yNS43MzY5MiwtNTcuMzMzMzMgLTU3LjMzMzMzLC01Ny4zMzMzM3pNNzQuNTMzMzMsMjguNjY2NjdjMjUuMzk5MzcsMCA0NS44NjY2NywyMC40NjczIDQ1Ljg2NjY3LDQ1Ljg2NjY3YzAsMjUuMzk5MzcgLTIwLjQ2NzI5LDQ1Ljg2NjY3IC00NS44NjY2Nyw0NS44NjY2N2MtMjUuMzk5MzcsMCAtNDUuODY2NjcsLTIwLjQ2NzI5IC00NS44NjY2NywtNDUuODY2NjdjMCwtMjUuMzk5MzcgMjAuNDY3MywtNDUuODY2NjcgNDUuODY2NjcsLTQ1Ljg2NjY3eiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+)
+    50% 50% no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 2px;
+  top: 2px;
 }
 
 .weatherInfo {
-  position: absolute;
-  left: 20%;
-  top: 20%;
+  position: relative;
+}
+
+.cityName {
+  font-size: 50px;
+  font-weight: 400;
 }
 
 .temp {
   font-size: 200px;
   font-weight: 200;
+}
+
+.unitsLabel {
+  position: absolute;
+  bottom: 27px;
+  left: 6px;
+  font-size: 75px;
+  font-weight: 200;
+}
+
+.hide {
+  display: none;
 }

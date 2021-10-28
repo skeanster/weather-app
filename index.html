@@ -9,20 +9,33 @@
     <title>Weather!</title>
   </head>
   <body>
-    <div class="weatherInfo">
-      <div class="temp">Hello World!</div>
+    <div class="scrollBar">
+      <div class="weatherDescription">description</div>
+      <div class="humidity">humidity</div>
+      <div class="min">min</div>
+      <div class="max">max</div>
     </div>
-    <form name="projectForm" class="projectForm">
-      <input
-        type="text"
-        id="cityInput"
-        name="cityInput"
-        value=""
-        placeholder="Enter a city:"
-        required
-      /><br />
-      <input type="submit" value="Submit" id="citySubmit" />
-    </form>
-    <button class="changeUnits">Fahrenheit/Celsius</button>
+    <div class="container">
+      <div class="weatherInfo">
+        <div class="cityName"></div>
+        <div class="temp"></div>
+        <div class="unitsLabel">F</div>
+      </div>
+      <div class="formContainer">
+        <form name="searchForm" class="searchForm">
+          <div class="searchIcon"></div>
+          <input
+            type="text"
+            id="cityInput"
+            name="cityInput"
+            value=""
+            placeholder="Enter a city:"
+            required
+          /><br />
+          <input type="submit" value="Submit" id="citySubmit" />
+        </form>
+        <button class="changeUnits">Fahrenheit/Celsius</button>
+      </div>
+    </div>
   </body>
 </html>

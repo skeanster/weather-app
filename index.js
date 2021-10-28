@@ -1,14 +1,28 @@
 const imperial = 'imperial';
 const celcius = 'metric';
 let currentUnits = imperial;
-let currentCity = 'san francisco';
+const defaultCity = 'San Francisco';
+let currentCity = defaultCity;
 
 // eslint-disable-next-line func-names
 const display = (function () {
+  const description = document.querySelector('.weatherDescription');
+  const humidity = document.querySelector('.humidity');
+  const min = document.querySelector('.min');
+  const max = document.querySelector('.max');
+
   const temp = document.querySelector('.temp');
+  const cityName = document.querySelector('.cityName');
 
   const displayData = (data) => {
     temp.textContent = `°${Math.round(data.main.temp)}`;
+    cityName.textContent = data.name;
+
+    description.textContent = data.weather[0].main;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    min.textContent = `Min: °${Math.round(data.main.temp_min)}`;
+    max.textContent = `Max: °${Math.round(data.main.temp_max)}`;
+    currentCity = data.name;
   };
 
   return { displayData };
@@ -21,30 +35,34 @@ const getWeather = async (city, units) => {
       { mode: 'cors' },
     );
     const weatherData = await response.json();
+    console.log(weatherData);
     display.displayData(weatherData);
   } catch (error) {
     alert("Sorry, we couldn't find that city");
   }
 };
 
-const formSubmit = async (event) => {
+const formSubmit = (event) => {
   event.preventDefault();
-  let userInput = document.querySelector('#cityInput').value;
-  currentCity = userInput;
-  await getWeather(currentCity, currentUnits);
-  userInput = '';
+  const userInput = document.querySelector('#cityInput').value;
+  getWeather(userInput, currentUnits);
+  document.querySelector('#cityInput').value = '';
 };
 
 const changeUnits = () => {
+  const label = document.querySelector('.unitsLabel');
+
   if (currentUnits === imperial) {
     currentUnits = celcius;
+    label.textContent = 'C';
   } else {
     currentUnits = imperial;
+    label.textContent = 'F';
   }
   getWeather(currentCity, currentUnits);
 };
 
-document.querySelector('.projectForm').addEventListener('submit', formSubmit);
+document.querySelector('.searchForm').addEventListener('submit', formSubmit);
 document.querySelector('.changeUnits').addEventListener('click', changeUnits);
 
-getWeather('san francisco', currentUnits);
+getWeather(defaultCity, currentUnits);
