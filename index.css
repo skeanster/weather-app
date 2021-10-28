@@ -23,15 +23,6 @@ body {
   font-weight: 300;
 }
 
-@media only screen and (max-width: 767px) {
-  .humidity {
-    display: none;
-  }
-  .windSpeed {
-    display: none;
-  }
-}
-
 .container {
   position: absolute;
   top: calc(10% + 250px);
@@ -125,6 +116,13 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+  .humidity {
+    display: none;
+  }
+  .windSpeed {
+    display: none;
+  }
+
   .temp {
     font-size: 100px;
   }
