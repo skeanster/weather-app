@@ -35,7 +35,6 @@ const getWeather = async (city, units) => {
       { mode: 'cors' },
     );
     const weatherData = await response.json();
-    console.log(weatherData);
     display.displayData(weatherData);
   } catch (error) {
     alert("Sorry, we couldn't find that city");
