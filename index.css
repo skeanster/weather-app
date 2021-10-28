@@ -30,12 +30,6 @@ body {
   .windSpeed {
     display: none;
   }
-  .min {
-    display: none;
-  }
-  .max {
-    display: none;
-  }
 }
 
 .container {
@@ -128,4 +122,18 @@ body {
 
 .hide {
   display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .temp {
+    font-size: 100px;
+  }
+
+  .unitsLabel {
+    font-size: 30px;
+  }
+
+  .cityName {
+    font-size: 35px;
+  }
 }
