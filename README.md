@@ -1,5 +1,7 @@
 # A weather application!
 
+Check it out: [Live Demo](https://skeanster.github.io/weather-app/) :point_left:
+
 With this single page application you can search for cities all over the world and get various bits of weather information.
 (Try to toggle between Fahrenheit and Celsius!)
 
